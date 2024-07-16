@@ -14,37 +14,62 @@ const selectOption = (option) => {
 import { useLoginStore } from "@/stores/login";
 const loginStore = useLoginStore();
 
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+function handleSearch() {
+  // console.log('handleSearch');
+  // console.log(selectedOption.value);
+  // console.log(searchValue.value);
+  if (searchValue.value === '') {}
+  else if (selectedOption.value === '标题') {
+    router.push(`/article-list?queryName=${searchValue.value}`)
+  } else if (selectedOption.value === '发布人') {
+    router.push(`/article-list?queryUploader=${searchValue.value}`)
+  }
+}
 
 </script>
 
 <template>
-  <img src="../assets/China_Telecom_logo.svg" class="w-full p-8 my-4 max-w-sm mx-auto" alt="">
-  <div class="relative w-11/12 mx-auto">
-    <van-search
-        class="custom-search"
-        v-model="searchValue"
-        placeholder="请输入想要搜索的关键字"
-        shape="round"
-    >
-      <template #left-icon>
-        <div class="flex items-center" @click="showDropdown = !showDropdown">
-          <span class="mr-2">{{ selectedOption }}</span>
-          <i class="van-icon van-icon-arrow-down text-gray-400" />
+  <div>
+    <!--  使用div盒子包裹消除报错  -->
+    <img src="../assets/China_Telecom_logo.svg" class="w-full p-8 my-4 max-w-sm mx-auto" alt="">
+    <div class="relative w-11/12 mx-auto">
+      <van-search
+          class="custom-search"
+          v-model="searchValue"
+          placeholder="请输入想要搜索的关键字"
+          shape="round"
+          @search="handleSearch"
+      >
+        <template #left-icon>
+          <div class="flex items-center" @click="showDropdown = !showDropdown">
+            <span class="mr-2">{{ selectedOption }}</span>
+            <i class="van-icon van-icon-arrow-down text-gray-400" />
+          </div>
+        </template>
+        <template #right-icon>
+          <van-icon name="search" class="text-gray-400" @click="handleSearch" />
+        </template>
+        <!--      <template #action>-->
+        <!--        <van-icon name="search" @click="handleSearch" />搜索-->
+        <!--      </template>-->
+      </van-search>
+      <div v-if="showDropdown" class="absolute left-0 mt-2 backdrop-blur-xl bg-white/50 border border-gray-300 rounded-lg shadow-lg overflow-hidden text-gray-500 z-10">
+        <div v-for="option in options" :key="option" class="px-4 py-2 cursor-pointer hover:bg-gray-300/50" @click="selectOption(option)">
+          {{ option }}
         </div>
-      </template>
-    </van-search>
-    <div v-if="showDropdown" class="absolute left-0 mt-2 backdrop-blur-xl bg-white/50 border border-gray-300 rounded-lg shadow-lg overflow-hidden text-gray-500 z-10">
-      <div v-for="option in options" :key="option" class="px-4 py-2 cursor-pointer hover:bg-gray-300/50" @click="selectOption(option)">
-        {{ option }}
+      </div>
+      <div class="flex flex-wrap mx-4 mt-8 justify-evenly justify-items-stretch gap-4">
+        <van-button class="custom-btn" to="/article-list">课件列表</van-button>
+        <van-button class="custom-btn" to="/question-list">一线需求</van-button>
+        <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的课件</van-button>
+        <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的需求</van-button>
       </div>
     </div>
-    <div class="flex flex-wrap mx-4 mt-8 justify-evenly justify-items-stretch gap-4">
-      <van-button class="custom-btn" to="">课件列表</van-button>
-      <van-button class="custom-btn" to="">一线需求</van-button>
-      <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的课件</van-button>
-      <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的需求</van-button>
-    </div>
   </div>
+
 
 </template>
 

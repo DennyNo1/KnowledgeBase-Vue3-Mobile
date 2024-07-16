@@ -9,7 +9,7 @@ import * as url from "node:url";
 
 const route = useRoute();
 const router = useRouter();
-console.log(route);
+// console.log(route);
 
 let nav = computed(() => {
   const path = route.path
@@ -82,7 +82,7 @@ function onClickReturnHome() {
 
 <style scoped>
 .custom-nav {
-  @apply  w-full backdrop-blur-xl bg-white/30 rounded-t-lg sm:rounded-t-3xl;
+  @apply w-full backdrop-blur-xl bg-white/30 rounded-t-lg sm:rounded-t-3xl;
   --van-nav-bar-title-font-size: 1.25rem;
 }
 

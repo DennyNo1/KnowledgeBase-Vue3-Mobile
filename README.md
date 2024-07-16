@@ -41,12 +41,12 @@ npm run build
 ### 页面目录
 
 1. 登录页 LoginView✅
-2. 首页（搜索页）HomeView
-3. 课件列表 ArticleListView
-   - 课件页面 ArticlePageView
+2. 首页（搜索页）HomeView✅
+3. 课件列表 ArticleListView✅
+   - 课件页面 ArticlePageView✅
    - ~~采编课件页面~~
-4. 需求列表 QuestionView
-   - 需求页面 QuestionPageView
+4. 需求列表 QuestionView✅
+   - 需求页面 QuestionPageView✅
    - ~~新建需求~~
 5. 我的需求
    - 需求页面

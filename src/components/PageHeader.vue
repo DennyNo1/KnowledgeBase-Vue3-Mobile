@@ -14,6 +14,13 @@ const props = defineProps({
     required: true
   },
 })
+
+import dayjs from 'dayjs'
+import { computed } from "vue";
+const date = computed(() => {
+  return dayjs(props.info.time).format('YYYY-MM-DD')
+})
+
 </script>
 
 <template>
@@ -29,11 +36,11 @@ const props = defineProps({
     </div>
     <div class="flex flex-col self-center place-items-center w-1/3 truncate">
       <div class="m-1 text-gray-500 text-center w-full">类型</div>
-      <div class="m-1 font-medium truncate text-center w-full px-3">{{ info.kind }}</div>
+      <div class="m-1 font-medium truncate text-center w-full px-3">{{ info.type }}</div>
     </div>
   </div>
   <div class="flex flex-row justify-between place-items-center mx-2 mt-1">
-    <div class="text-gray-400 my-2.5">发布时间：{{ info.time }}</div>
+    <div class="text-gray-400 my-2.5">发布时间：{{ date }}</div>
     <div class="text-gray-400 my-auto "><van-icon name="eye-o" class="mr-2" />{{ info.watch }}</div>
   </div>
 </template>

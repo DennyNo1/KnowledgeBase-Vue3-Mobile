@@ -5,7 +5,7 @@ const currentPage = ref(1);
 
 const value = ref('')
 
-const title = ref(['默认','热门知识','营业','装维','政企客户经理','客经专员','支局长','片区长','VIP客户经理'])
+const title = ref(['默认', '热门知识', '营业', '装维', '政企客户经理', '客经专员', '支局长', '片区长', 'VIP客户经理'])
 const articles = computed(() => {
   return [
     {
@@ -13,7 +13,7 @@ const articles = computed(() => {
       title: "营养专家的文章11111111111111111111111111111111111111111",
       author: "张三1111111111111111111111111111111111",
       department: "政企部111111111111111111111111111111111",
-      kind: "营业",
+      type: "营业",
       time: "2024-06-04",
       status: "未回复",
     },

@@ -1,7 +1,7 @@
 import request from "@/utils/request";
 
-export const userLoginService = ({ username, password }) =>
-    request.post("/user/login", { username, password });
+export const userLoginService = ({username, password}) =>
+    request.post("/user/login", {username, password});
 
 //查询
 export async function userCheckService(username) {
@@ -13,8 +13,9 @@ export async function userCheckService(username) {
         },
     });
 }
+
 //重置密码
-export async function userResetService(username,password,safeQuestion,safeAnswer) {
+export async function userResetService(username, password, safeQuestion, safeAnswer) {
     return await request({
         method: "POST",
         url: "/user/reset",

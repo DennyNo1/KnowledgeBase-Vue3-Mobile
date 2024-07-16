@@ -1,8 +1,7 @@
 import axios from "axios";
-import { ElMessage } from "element-plus";
 import { Session } from "./storage";
 import { storeToRefs } from "pinia";
-import { useLoginStore } from "@/store/login.js";
+import { useLoginStore } from "@/stores/login.js";
 
 const request = axios.create({
   // 开发环境
@@ -50,10 +49,10 @@ request.interceptors.response.use(
     // 对响应错误做点什么
     if (error.code === "ERR_BAD_REQUEST") {
       // `token` 过期或者账号已在别处登录
-      ElMessage({
-        message: "您的账号登录过期或在别处登录！",
-        type: "error",
-      });
+      // ElMessage({
+      //   message: "您的账号登录过期或在别处登录！",
+      //   type: "error",
+      // });
       Session.clear();
       // 清除登录信息
       const store = useLoginStore();
