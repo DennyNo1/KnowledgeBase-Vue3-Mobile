@@ -105,6 +105,11 @@ const computedCurrentPage = computed({
   }
 })
 
+function handleSearch() {
+  query.queryName = value.value
+  router.push({path, query})
+}
+
 </script>
 
 <template>
@@ -115,6 +120,7 @@ const computedCurrentPage = computed({
           shape="round"
           background="#00000000"
           placeholder="请输入搜索关键词"
+          @search="handleSearch"
       />
     </div>
     <van-tabs v-model:active="active" @click-tab="onClickTab">
