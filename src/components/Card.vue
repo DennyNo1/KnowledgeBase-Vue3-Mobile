@@ -32,12 +32,20 @@ function handleClick() {
   }
 }
 
+import { computed } from "vue";
+
+const dynamicClasses = computed(() => {
+  if (props.type === '需求') {
+    return { 'bg-amber-400' : true }
+  } else return { 'bg-blue-400': true }
+});
+
 </script>
 
 <template>
   <div class="bg-white p-2 rounded-lg flex flex-col group hover:shadow-lg" @click="handleClick">
     <div class="mx-1 flex flex-row my-2">
-      <div class="rounded-lg rounded-br-sm bg-blue-400 text-sm text-white py-1 px-1.5 mr-4 min-w-max">{{ type }}</div>
+      <div class="rounded-lg rounded-br-sm text-sm text-white py-1 px-1.5 mr-4 min-w-max" :class="dynamicClasses">{{ type }}</div>
       <div class="text-xl font-bold truncate  group-hover:text-gray-500">{{ info.title }}</div>
     </div>
     <div class="bg-gray-100 flex flex-row justify-around rounded mt-3 mx-1 p-1">
@@ -56,7 +64,7 @@ function handleClick() {
     </div>
     <div class="flex flex-row justify-between place-items-center mx-2 mt-1">
       <div class="text-gray-400 my-2.5">发布时间：{{ info.time }}</div>
-      <div class="text-blue-500 py-1 px-3 rounded-full border-2 border-blue-500 bg-blue-100" v-if="info.status" >{{ info.status }}</div>
+      <div class="text-blue-500 py-1 px-3 rounded-full border-2 border-blue-500 bg-blue-100" v-if="type === '课件'" >{{ info.status }}</div>
     </div>
   </div>
 </template>
