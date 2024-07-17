@@ -50,7 +50,7 @@ onMounted(() => {
   <div class="m-4">
     <PageHeader :info="info" />
     <article class="prose mt-3" v-html="article" />
-    <article class="prose mt-6">
+    <article class="prose mt-6" v-if="documents.length">
       <h2>附件列表</h2>
       <ul>
         <li v-for="doc in documents">

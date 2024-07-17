@@ -26,9 +26,9 @@ const router = useRouter();
 
 function handleClick() {
   if (props.type === '课件') {
-    router.push('/article-page');
+    router.push(`/article-page?id=${props.info.id}`);
   } else if (props.type === '需求') {
-    router.push('/question-page');
+    router.push(`/question-page?id=${props.info.id}`);
   }
 }
 

@@ -22,6 +22,8 @@ let nav = computed(() => {
   }
 })
 
+const query = route.query
+
 // 计算属性：根据showLeftButton的值动态生成导航栏的props
 const navBarProps = computed(() => {
   // 在需求详情页或课件详情页的导航栏添加返回按钮
@@ -43,7 +45,7 @@ const navBarProps = computed(() => {
     return {
       showSwitch: true,
       onClickLeft: onClickReturnHome,
-      onClickRight: () => onClickExchange(path)
+      onClickRight: () => onClickExchange(path, query)
       // 改为回调函数仅在点击事件发生时才会被调用，而不是在计算属性重新计算时立即调用。避免页面频繁切换和卡死的情况
     }
   }
@@ -54,8 +56,8 @@ function onClickReturn() {
   router.back();
 }
 
-function onClickExchange(path) {
-  router.push(path);
+function onClickExchange(path, query) {
+  router.push({path, query});
 }
 
 function onClickReturnHome() {
