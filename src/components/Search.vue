@@ -79,7 +79,7 @@ const checkedPath = ref('/article-list')
         <van-button class="custom-btn" to="/question-list">一线需求</van-button>
         <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的课件</van-button>
         <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的需求</van-button>
-        <van-button class="custom-btn" to="" >AI大模型助手</van-button>
+        <van-button class="custom-btn" to="/ai-helper" >AI大模型助手</van-button>
       </div>
     </div>
   </div>

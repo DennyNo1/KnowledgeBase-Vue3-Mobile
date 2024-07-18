@@ -35,6 +35,11 @@ const router = createRouter({
           name: 'QuestionList',
           component: () => import('../views/QuestionListView.vue')
         },
+        {
+          path: 'ai-helper',
+          name: 'AiHelper',
+          component: () => import('../views/AiHelperView.vue')
+        }
       ]
     },
     {

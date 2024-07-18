@@ -17,6 +17,8 @@ let nav = computed(() => {
     return '需求详情'
   } else if (path === '/article-page') {
     return '课件详情'
+  } else if (path === '/ai-helper') {
+    return '中国电信大模型'
   } else {
     return '中国电信知识库系统'
   }
@@ -34,7 +36,8 @@ const navBarProps = computed(() => {
       onClickLeft: onClickReturn
     }
   }
-  // 在需求列表页或课件列表页导航栏添加切换按钮
+  // 在需求列表页、课件列表页导航栏添加切换按钮
+  // 在需求列表页、课件列表页导航栏添加首页按钮
   if (route.path === '/question-list' || route.path === '/article-list') {
     let path = ''
     let switchText = ''
@@ -46,11 +49,19 @@ const navBarProps = computed(() => {
       switchText = '切换到课件'
     }
     return {
-      showSwitch: true,
+      showLeftSwitch: true,
+      showRightSwitch: true,
       onClickLeft: onClickReturnHome,
       // 改为回调函数仅在点击事件发生时才会被调用，而不是在计算属性重新计算时立即调用。避免页面频繁切换和卡死的情况
       onClickRight: () => onClickExchange(path, query),
       switchText,
+    }
+  }
+  // 在ai助手页面添加首页按钮
+  if (route.path === '/ai-helper') {
+    return {
+      showLeftSwitch: true,
+      onClickLeft: onClickReturnHome,
     }
   }
   return {}
@@ -76,11 +87,11 @@ function onClickReturnHome() {
 <template>
   <div class="max-w-md w-full flex flex-col flex-1 overflow-auto scrollbar-hide backdrop-blur-xl bg-white/50 rounded-lg sm:rounded-3xl sm:my-2">
     <van-nav-bar class="custom-nav grow-0" :title="nav" v-bind="navBarProps">
-      <template #left v-if="navBarProps.showSwitch">
+      <template #left v-if="navBarProps.showLeftSwitch">
         <van-icon name="wap-home-o" size="18" />
         <div class="text-blue-500">首页</div>
       </template>
-      <template #right v-if="navBarProps.showSwitch">
+      <template #right v-if="navBarProps.showRightSwitch">
         <van-icon name="exchange" size="18" />
         <div class="text-blue-500">{{ navBarProps.switchText }}</div>
       </template>
