@@ -21,13 +21,20 @@ function handleSearch() {
   // console.log('handleSearch');
   // console.log(selectedOption.value);
   // console.log(searchValue.value);
-  if (searchValue.value === '') {}
+  // 更改不合理的逻辑
+  if (searchValue.value === '') {
+    router.push({ path: checkedPath.value })
+  }
   else if (selectedOption.value === '标题') {
-    router.push(`/article-list?queryName=${searchValue.value}`)
+    // router.push(`/article-list?queryName=${searchValue.value}`)
+    router.push({ path: checkedPath.value, query: { queryName: searchValue.value }})
   } else if (selectedOption.value === '发布人') {
-    router.push(`/article-list?queryUploader=${searchValue.value}`)
+    // router.push(`/article-list?queryUploader=${searchValue.value}`)
+    router.push({ path: checkedPath.value, query: { queryUploader: searchValue.value }})
   }
 }
+
+const checkedPath = ref('/article-list')
 
 </script>
 
@@ -61,11 +68,18 @@ function handleSearch() {
           {{ option }}
         </div>
       </div>
+      <div class="m-4 mt-6">
+        <van-radio-group v-model="checkedPath" direction="horizontal" class="flex flex-row justify-evenly justify-items-center mx-auto">
+          <van-radio class="mr-2" name="/article-list">搜索课件</van-radio>
+          <van-radio class="ml-2" name="/question-list">搜索需求</van-radio>
+        </van-radio-group>
+      </div>
       <div class="flex flex-wrap mx-4 mt-8 justify-evenly justify-items-stretch gap-4">
         <van-button class="custom-btn" to="/article-list">课件列表</van-button>
         <van-button class="custom-btn" to="/question-list">一线需求</van-button>
         <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的课件</van-button>
         <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的需求</van-button>
+        <van-button class="custom-btn" to="" >AI大模型助手</van-button>
       </div>
     </div>
   </div>

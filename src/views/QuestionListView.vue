@@ -129,10 +129,10 @@ function handleSearch() {
           @search="handleSearch"
       />
     </div>
-    <van-tabs v-model:active="active" @click-tab="onClickTab">
+    <van-tabs v-model:active="active" @click-tab="onClickTab" class="mb-2">
       <van-tab v-for="index in title" :title="index" />
     </van-tabs>
-    <Card v-for="question in questionList" :info="question" type="需求" class="m-3"  />
+    <Card v-for="question in questionList" :info="question" type="需求" class="m-3 mb-2"  />
     <div class="grow" />
     <div class="mt-auto pt-4">
       <van-pagination
