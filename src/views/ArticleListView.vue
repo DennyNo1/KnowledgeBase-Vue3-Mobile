@@ -21,7 +21,7 @@ const currentPage = ref(Number(route.query.page) || 1)
 // console.log(currentPage.value, "setup")
 const value = ref(route.query.queryName || '')
 const active = ref(title.value.findIndex(item => item === route.query.type) === -1 ? 0 : title.value.findIndex(item => item === route.query.type))
-const pageSize = ref(6) // 每页默认展示10条结果
+const pageSize = ref(6) // 每页默认展示6条结果
 const totalPages = ref(1)
 
 const rawList = ref([])
@@ -55,19 +55,21 @@ const getArticleList = async (page, pageSize, queryName, type) => {
   try {
     let data = (await userArticleListService(page, pageSize, queryName, type)).data
     // console.log(data);
-    if (data.pages === 0) {
-      currentPage.value = 1
-      // console.log("current page is set to 1")
-      query.page = 1
-      totalPages.value = 1
-      await router.push({path, query})
-    } else if (totalPages.value !== data.pages){
-      totalPages.value = data.pages
-      if (totalPages.value < currentPage.value) currentPage.value = totalPages.value
-      query.page = currentPage.value
-      await router.push({path, query})
-      data = (await userArticleListService(currentPage.value, pageSize, queryName, type)).data
-    }
+    // if (data.pages === 0) {
+    //   currentPage.value = 1
+    //   // console.log("current page is set to 1")
+    //   query.page = 1
+    //   totalPages.value = 1
+    //   await router.push({path, query})
+    // } else if (totalPages.value !== data.pages){
+    //   totalPages.value = data.pages
+    //   if (totalPages.value < currentPage.value) currentPage.value = totalPages.value
+    //   query.page = currentPage.value
+    //   await router.push({path, query})
+    //   data = (await userArticleListService(currentPage.value, pageSize, queryName, type)).data
+    // }
+    // 去除原来的逻辑
+    totalPages.value = data.pages
     rawList.value = data.records
   } catch (error) {
     console.log("请求失败！", error)
@@ -77,6 +79,9 @@ const getArticleList = async (page, pageSize, queryName, type) => {
 function onClickTab(item) {
   // console.log(item.title)
   // console.log(query)
+  // 切换tab标签时自动回到该标签的第一页
+  query.page = '1'
+  currentPage.value = 1
   query.type = item.title;
   router.push({path, query})
   getArticleList(currentPage.value, pageSize.value, query.queryName, query.type)

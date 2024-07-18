@@ -37,16 +37,20 @@ const navBarProps = computed(() => {
   // 在需求列表页或课件列表页导航栏添加切换按钮
   if (route.path === '/question-list' || route.path === '/article-list') {
     let path = ''
+    let switchText = ''
     if (route.path === '/article-list') {
       path = '/question-list'
+      switchText = '切换到需求'
     } else if (route.path === '/question-list') {
       path = '/article-list'
+      switchText = '切换到课件'
     }
     return {
       showSwitch: true,
       onClickLeft: onClickReturnHome,
-      onClickRight: () => onClickExchange(path, query)
       // 改为回调函数仅在点击事件发生时才会被调用，而不是在计算属性重新计算时立即调用。避免页面频繁切换和卡死的情况
+      onClickRight: () => onClickExchange(path, query),
+      switchText,
     }
   }
   return {}
@@ -57,6 +61,9 @@ function onClickReturn() {
 }
 
 function onClickExchange(path, query) {
+  // 切换时默认回到第一页
+  query.page = 1
+  // query.type = '默认'
   router.push({path, query});
 }
 
@@ -75,7 +82,7 @@ function onClickReturnHome() {
       </template>
       <template #right v-if="navBarProps.showSwitch">
         <van-icon name="exchange" size="18" />
-        <div class="text-blue-500">切换</div>
+        <div class="text-blue-500">{{ navBarProps.switchText }}</div>
       </template>
     </van-nav-bar>
     <router-view class="grow" />
