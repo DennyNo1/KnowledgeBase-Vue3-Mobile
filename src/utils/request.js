@@ -5,7 +5,7 @@ import { useLoginStore } from "@/stores/login.js";
 
 const request = axios.create({
   // 开发环境
-  baseURL: "http://localhost:8088",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
 
   //生产环境
 
