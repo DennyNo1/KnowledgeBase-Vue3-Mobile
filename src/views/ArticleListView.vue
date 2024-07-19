@@ -113,6 +113,8 @@ const computedCurrentPage = computed({
 function handleSearch() {
   query.queryName = value.value
   router.push({path, query})
+  currentPage.value = 1
+  getArticleList(currentPage.value, pageSize.value, query.queryName, query.type)
 }
 
 </script>
