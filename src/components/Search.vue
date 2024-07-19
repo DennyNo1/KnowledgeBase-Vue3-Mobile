@@ -70,8 +70,8 @@ const checkedPath = ref('/article-list')
       </div>
       <div class="m-4 mt-6">
         <van-radio-group v-model="checkedPath" direction="horizontal" class="flex flex-row justify-evenly justify-items-center mx-auto">
-          <van-radio class="mr-2" name="/article-list">搜索课件</van-radio>
-          <van-radio class="ml-2" name="/question-list">搜索需求</van-radio>
+          <van-radio class="mr-2" shape="dot" name="/article-list">搜索课件</van-radio>
+          <van-radio class="ml-2" shape="dot" name="/question-list">搜索需求</van-radio>
         </van-radio-group>
       </div>
       <div class="flex flex-wrap mx-4 mt-8 justify-evenly justify-items-stretch gap-4">
