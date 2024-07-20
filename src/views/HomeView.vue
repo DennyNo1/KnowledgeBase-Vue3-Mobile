@@ -1,11 +1,9 @@
 <script setup>
-import Search from "@/components/Search.vue";
 
 import { RouterView } from 'vue-router'
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useRouter } from 'vue-router';
-import * as url from "node:url";
 
 const route = useRoute();
 const router = useRouter();
