@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
+// 这个页面实际上来说才是首页
 const searchValue = ref("");
 const showDropdown = ref(false);
 const selectedOption = ref("标题");
@@ -105,7 +105,8 @@ const checkedPath = ref("/article-list");
         <van-button class="custom-btn" to="/question-list">看需求</van-button>
         <!-- <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的课件</van-button>
         <van-button class="custom-btn" to="" v-if="loginStore.isLoggedIn && loginStore.userInfo.role !== 'user'">我的需求</van-button> -->
-        <van-button class="custom-btn" to="/ai-helper">AI助手</van-button>
+        <!-- <van-button class="custom-btn" to="/ai-helper">AI助手</van-button> -->
+        <van-button class="custom-btn" to="/query-score">查积分</van-button>
         <van-button class="custom-btn" to="/numberLevel">易查询</van-button>
 
       </div>

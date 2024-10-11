@@ -28,7 +28,7 @@ const rawList = ref([])
 const articleList = computed(() => {
 //   return [
 //     {
-//       id: 1,
+//       id: 1,status: item.article.isSolved ?%20%22%E5%B7%B2%E5%9B%9E%E5%A4%8D%22%20:%20%22%E6%9C%AA%E8%A7%A3%E5%86%B3%22,
 //       title: "营养专家的文章11111111111111111111111111111111111111111",
 //       author: "张三1111111111111111111111111111111111",
 //       department: "政企部111111111111111111111111111111111",

@@ -68,7 +68,7 @@ const dynamicClasses = computed(() => {
     </div>
     <div class="flex flex-row justify-between place-items-center mx-2 mt-2">
       <div class="text-gray-400 my-2.5">发布时间：{{ info.time }}</div>
-      <div class="text-blue-500 py-1 px-3 rounded-full border-2 border-blue-500 bg-blue-100" v-if="type === '课件'" >{{ info.status }}</div>
+      <!-- <div class="text-blue-500 py-1 px-3 rounded-full border-2 border-blue-500 bg-blue-100" v-if="type === '课件'" >{{ info.status }}</div> -->
     </div>
   </div>
 </template>

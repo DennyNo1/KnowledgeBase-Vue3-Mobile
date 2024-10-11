@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
-import Search from "../components/Search.vue";
+import Search from "../views/Search.vue";
+import QueryScore from "@/views/QueryScore.vue";
+import QueryScoreList from "@/views/QueryScoreList.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +47,16 @@ const router = createRouter({
           name: "numberLevel",
           component: () => import("../views/NumberLevel.vue"),
         },
+        {
+          path: "query-score",
+          name: "QueryScore",
+          // 给路由一个唯一的名称，用于之后的使用。实际上基本用不到
+          component: QueryScore,
+        },
+        {
+          path:"query-score-list",
+          component:QueryScoreList,
+        }
       ],
     },
     {
